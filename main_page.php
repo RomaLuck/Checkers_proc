@@ -13,44 +13,42 @@ require_once "game.php";
 </head>
 
 <body class="p-3 mb-2 bg-secondary text-white">
-    <div class="container">
         <div class="row justify-content-center align-items-center">
-            <form style="max-width: 500px;" class="row g-3" id="form" method="POST">
-                <div class="col-auto">
-                    <div class="row gy-1">
-                        <div class="form-group">
-                            <input type="text" name="choose_figure" id="form1" placeholder="choose a checker">
-                            <input type="text" name="set_step" id="form2" placeholder="select a cell">
-                            <input type="submit" name="submit" id="submit" value="enter">
+                <form style="max-width: 500px;" class="row g-3" id="form" method="POST">
+                    <div class="col-auto">
+                        <div class="row gy-1">
+                            <div class="form-group">
+                                <input type="text" name="choose_figure" id="form1" placeholder="choose a checker">
+                                <input type="text" name="set_step" id="form2" placeholder="select a cell">
+                                <input type="submit" name="submit" id="submit" value="enter">
+                            </div>
                         </div>
+                </form>
+                <div class="row justify-content-center align-items-center">
+                    <div style="max-width: 500px;">
+                        <?php
+                        $wharray = [];
+                        foreach ($_SESSION["wh_team"] as $item) {
+                            $wharray[] = implode($item);
+                        }
+                        $blarray = [];
+                        foreach ($_SESSION["bl_team"] as $item) {
+                            $blarray[] = implode($item);
+                        }
+                        $jsonwhite = json_encode($wharray);
+                        $jsonblack = json_encode($blarray);
+                        ?>
+                        <p><?php if (isset($_SESSION["white"])) {
+                                echo ($_SESSION["white"]);
+                            } ?></p>
+                        <p id="white"></p>
+                        <p><?php if (isset($_SESSION["black"])) {
+                                echo ($_SESSION["black"]);
+                            } ?></p>
+                        <p id="black"></p>
+                        <h5><?php foreach($message as $mes){echo $mes;} ?></h5>
                     </div>
                 </div>
-            </form>
-
-
-            <?php
-            $wharray = [];
-            foreach ($_SESSION["wh_team"] as $item) {
-                $wharray[] = implode($item);
-            }
-            $blarray = [];
-            foreach ($_SESSION["bl_team"] as $item) {
-                $blarray[] = implode($item);
-            }
-            $jsonwhite = json_encode($wharray);
-            $jsonblack = json_encode($blarray);
-            ?>
-            <p><?php if (isset($_SESSION["white"])) {
-                    echo ($_SESSION["white"]);
-                } ?></p>
-            <p id="white"></p>
-            <p><?php if (isset($_SESSION["black"])) {
-                    echo ($_SESSION["black"]);
-                } ?></p>
-            <p id="black"></p>
-
-            <!-- <div class="box">
-            <div class="centered"> -->
         </div>
     </div>
     <div class="container">
@@ -157,7 +155,11 @@ require_once "game.php";
                     <td class="white" id="h1"></td>
                 </tr>
             </table>
-                <a href="end_game.php">finish the game</a>
+            <div class="row justify-content-center align-items-center">
+                <div style="max-width: 500px;">
+                    <a href="end_game.php" class="text-reset">finish the game</a>
+                </div>
+            </div>
         </div>
     </div>
     <script>

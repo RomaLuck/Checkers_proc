@@ -26,14 +26,14 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
         [$side1, $back],
         [$side2, $back]
     ];
-
+    $message = [];
 
 
     //перевірки:
     if (in_array($choose_figure, $_SESSION["wh_team"])) { //хід білими
         if (in_array($setStep, $checkerdesk)) {
             if (in_array($setStep, $_SESSION["wh_team"])) {
-                echo "поле зайняте вашою шашкою";
+                $message[]= "поле зайняте вашою шашкою";
             } elseif ((in_array($setStep, $_SESSION["bl_team"]) and in_array($setStep, $truewalkWhite)) or (in_array($setStep, $_SESSION["bl_team"]) and in_array($setStep, $truewalkBlack))) {
                 if ((array_search($setStep[1], $vertic_desk) - array_search($choose_figure[1], $vertic_desk)) > 0) {
                     if ((array_search($setStep[0], $goriz_desk) - array_search($choose_figure[0], $goriz_desk)) > 0) {
@@ -51,22 +51,22 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
                 if (!in_array($check_for_beat, $_SESSION["bl_team"])) {
                     $key_enemy = array_search($setStep, $_SESSION["bl_team"]);
                     unset($_SESSION["bl_team"][$key_enemy]); //видалення з елементу з масиву противника
-                    echo "шашка " . implode($choose_figure) . " побила противника на " . implode($setStep);
+                    $message[] = "шашка " . implode($choose_figure) . " побила противника на " . implode($setStep);
                     $key_team = array_search($choose_figure, $_SESSION["wh_team"]);
                     $_SESSION["wh_team"][$key_team] = $check_for_beat;
                 } else {
-                    echo "цю шашку побити не можна";
+                    $message[] = "цю шашку побити не можна";
                 }
             } elseif (!in_array($setStep, $truewalkWhite)) {
-                echo "сюди ходити не можна. доступні поля:";
-                echo "<br>";
+                $message[] = "сюди ходити не можна. доступні поля:";
+                $message[] = "<br>";
                 foreach ($truewalkWhite as $truewalk) {
                     if (in_array($truewalk, $checkerdesk) and !in_array($truewalk, $_SESSION["wh_team"])) {
-                        echo (implode($truewalk))."<br>";
+                        $message[] = (implode($truewalk))."<br>";
                     }
                 }
             } else {
-                echo "хід виконано";
+                $message[] = "хід виконано";
                 $key_team = array_search($choose_figure, $_SESSION["wh_team"]); //змінюємо масив
                 $_SESSION["wh_team"][$key_team] = $setStep; //змінюємо масив 
             }
@@ -76,7 +76,7 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
     } elseif (in_array($choose_figure, $_SESSION["bl_team"])) { //хід чорними
         if (in_array($setStep, $checkerdesk)) {
             if (in_array($setStep, $_SESSION["bl_team"])) {
-                echo "поле зайняте вашою шашкою";
+                $message[] = "поле зайняте вашою шашкою";
             } elseif ((in_array($setStep, $_SESSION["wh_team"]) and in_array($setStep, $truewalkWhite)) or (in_array($setStep, $_SESSION["wh_team"]) and in_array($setStep, $truewalkBlack))) {
                 if ((array_search($setStep[1], $vertic_desk) - array_search($choose_figure[1], $vertic_desk)) > 0) {
                     if ((array_search($setStep[0], $goriz_desk) - array_search($choose_figure[0], $goriz_desk)) > 0) {
@@ -94,22 +94,22 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
                 if (!in_array($check_for_beat, $_SESSION["wh_team"])) {
                     $key_enemy = array_search($setStep, $_SESSION["wh_team"]);
                     unset($_SESSION["wh_team"][$key_enemy]); //видалення з елементу з масиву противника
-                    echo "шашка " . implode($choose_figure) . " побила противника на " . implode($setStep);
+                    $message[] = "шашка " . implode($choose_figure) . " побила противника на " . implode($setStep);
                     $key_team = array_search($choose_figure, $_SESSION["bl_team"]);
                     $_SESSION["bl_team"][$key_team] = $check_for_beat;
                 } else {
-                    echo "цю шашку побити не можна";
+                    $message[] = "цю шашку побити не можна";
                 }
             } elseif (!in_array($setStep, $truewalkBlack)) {
-                echo "сюди ходити не можна. доступні поля:";
-                echo "<br>";
+                $message[] = "сюди ходити не можна. доступні поля:";
+                $message[] = "<br>";
                 foreach ($truewalkBlack as $truewalk) {
                     if (in_array($truewalk, $checkerdesk) and !in_array($truewalk, $_SESSION["bl_team"])) {
-                        echo (implode($truewalk))."<br>";
+                        $message[] = (implode($truewalk))."<br>";
                     }
                 }
             } else {
-                echo "хід виконано";
+                $message[] = "хід виконано";
                 $key_team = array_search($choose_figure, $_SESSION["bl_team"]); //змінюємо масив
                 $_SESSION["bl_team"][$key_team] = $setStep; //змінюємо масив 
             }
@@ -120,3 +120,4 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
 }
 //потрібно доробити можливість бити противника, який знаходиться позаду. і почерговість дій гравців
 //фронтенд->зробити візуальну дошку із шашками
+//виправити баг із розміщенням шашки скраю

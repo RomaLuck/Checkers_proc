@@ -182,26 +182,35 @@ require_once "game.php";
         var black = JSON.parse('<?php echo $jsonblack ?>');
         // document.getElementById("white").innerHTML = white;
         // document.getElementById("black").innerHTML = black;
+        
+        document.addEventListener("click", function(event) {
+            const target = event.target.classList.contains("white") 
+            || event.target.classList.contains("black") 
+            || event.target.classList.contains("red-piece") 
+            || event.target.classList.contains("black-piece");
 
-        for (var i = 0; i < table.length; i++) {
-            table[i].addEventListener("click", function() {
+            if (target) {
                 if (form1.value == "") {
-                    form1.value = event.target.id;
-                } else if (event.target.id !== form1.value) {
-                    form2.value = event.target.id;
+                    form1.value = event.target.id || event.target.parentNode.id;
+                } else if (event.target.id !== form1.value || event.target.parentNode.id !== form1.value) {
+                    form2.value = event.target.id || event.target.parentNode.id;
                 }
-            });
-        }
+            }
+        });
 
         for (var i = 0; i < table.length; i++) {
             if (white.includes(table[i].id)) {
-                table[i].className = "red-piece";
+                const piece = document.createElement('div');
+                piece.className = "red-piece";
+                table[i].appendChild(piece);
             }
         }
 
         for (var i = 0; i < table.length; i++) {
             if (black.includes(table[i].id)) {
-                table[i].className = "black-piece";
+                const piece = document.createElement('div');
+                piece.className = "black-piece";
+                table[i].appendChild(piece);
             }
         }
     </script>

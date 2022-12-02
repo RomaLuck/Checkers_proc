@@ -29,16 +29,18 @@ margin-top: 10px;
 }
 
 .black-piece {
-
+    width: 4em;
+    height: 4em;
     background-color: black;
     border: 1px solid white;
     border-radius: 50px;
 }
 
 .red-piece {
-
+    width: 4em;
+    height: 4em;
     background-color: red;
-    border: #b58863;
+    border: 1px solid white;
     border-radius: 50px;
 }
 

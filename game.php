@@ -54,6 +54,7 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
                     $message[] = "шашка " . implode($choose_figure) . " побила противника на " . implode($setStep);
                     $key_team = array_search($choose_figure, $_SESSION["wh_team"]);
                     $_SESSION["wh_team"][$key_team] = $check_for_beat;
+                    $points+=1;
                 } else {
                     $message[] = "цю шашку побити не можна";
                 }

@@ -1,20 +1,22 @@
 <?php
 session_start();
 
-if(isset($_POST["white"])and isset($_POST["black"])){
-$_SESSION["white"] = $_POST["white"];
-$_SESSION["black"] = $_POST["black"];
+if (isset($_POST["white"]) and isset($_POST["black"])) {
+    $_SESSION["white"] = $_POST["white"];
+    $_SESSION["black"] = $_POST["black"];
 }
 
 require_once "object.php";
 $_SESSION["wh_team"] = $white;
 $_SESSION["bl_team"] = $black;
+$_SESSION['points_white'] = $points_white = 0;
+$_SESSION['points_black'] = $points_black = 0;
 ?>
 
 <html>
 
 <head>
-    <title>Form chess</title>
+    <title>Form checkers</title>
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -44,18 +46,12 @@ $_SESSION["bl_team"] = $black;
                                 <?php
                                 if (isset($_POST["white"]) or isset($_POST["black"])) {
                                     echo "<p class='fw-lighter'>Дані збережено.</p>";
+                                header("refresh:1;url=main_page.php");
+                                }
                                 ?>
-                                    <div class="text-danger">
-                                        <div class="p-3 mb-2 bg-light text-dark">
-                                    <?php
-                                    echo '<p><a href="main_page.php">START GAME</a><p>';
-                                } ?>
-                                </div>
-                                    </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
     </div>

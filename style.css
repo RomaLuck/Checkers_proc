@@ -1,6 +1,5 @@
 .col-5 {
     margin: auto;
-    /* justify-content: center; */
 }
 
 p{
@@ -39,11 +38,15 @@ margin-top: 10px;
 .red-piece {
     width: 4em;
     height: 4em;
-    background-color: red;
-    border: 1px solid white;
+    background-color: white;
+    border: 1px solid black;
     border-radius: 50px;
 }
 
 td:hover{
     opacity: 0.8;
+}
+
+#submit{
+    width: 100px;
 }

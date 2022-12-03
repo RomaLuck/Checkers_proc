@@ -54,7 +54,7 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
                     $message[] = "шашка " . implode($choose_figure) . " побила противника на " . implode($setStep);
                     $key_team = array_search($choose_figure, $_SESSION["wh_team"]);
                     $_SESSION["wh_team"][$key_team] = $check_for_beat;
-                    $points+=1;
+                    $_SESSION['points_white']+=1;
                 } else {
                     $message[] = "цю шашку побити не можна";
                 }
@@ -98,6 +98,7 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
                     $message[] = "шашка " . implode($choose_figure) . " побила противника на " . implode($setStep);
                     $key_team = array_search($choose_figure, $_SESSION["bl_team"]);
                     $_SESSION["bl_team"][$key_team] = $check_for_beat;
+                    $_SESSION['points_black']+=1;
                 } else {
                     $message[] = "цю шашку побити не можна";
                 }
@@ -119,6 +120,5 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
         }
     }
 }
-//потрібно доробити можливість бити противника, який знаходиться позаду. і почерговість дій гравців
-//фронтенд->зробити візуальну дошку із шашками
+//почерговість дій гравців
 //виправити баг із розміщенням шашки скраю

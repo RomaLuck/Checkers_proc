@@ -45,8 +45,8 @@ $_SESSION['points_black'] = $points_black = 0;
                             <div class="form-group">
                                 <?php
                                 if (isset($_POST["white"]) or isset($_POST["black"])) {
-                                    echo "<p class='fw-lighter'>Дані збережено.</p>";
-                                header("refresh:1;url=main_page.php");
+                                    echo "<p class='fw-lighter'>Data saved.</p>";
+                                header("refresh:0;url=main_page.php");
                                 }
                                 ?>
                             </div>

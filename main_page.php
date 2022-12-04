@@ -12,7 +12,7 @@ require_once "game.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <head>
-        <title>Form checkers</title>
+        <title>Checkers</title>
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
@@ -36,6 +36,15 @@ require_once "game.php";
             </form>
 
             <?php
+            function parseArray($array)
+            {
+                $parsarr = [];
+                foreach ($array as $item) {
+                    $parsarr[] = implode($item);
+                }
+                return $parsarr;
+            }
+
             $wharray = [];
             foreach ($_SESSION["wh_team"] as $item) {
                 $wharray[] = implode($item);
@@ -44,8 +53,8 @@ require_once "game.php";
             foreach ($_SESSION["bl_team"] as $item) {
                 $blarray[] = implode($item);
             }
-            $jsonwhite = json_encode($wharray);
-            $jsonblack = json_encode($blarray);
+            $jsonwhite = json_encode(parseArray($_SESSION["wh_team"]));
+            $jsonblack = json_encode(parseArray($_SESSION["bl_team"]));
             ?>
             <div class="row gx-3">
                 <div class="col">
@@ -62,11 +71,11 @@ require_once "game.php";
                 </div>
                 <h5><?php
                     if ($_SESSION['points_white'] === 12) {
-                        $message[] = "<br>КОМАНДА БІЛИХ ВИГРАЛА!<br>";
+                        $message[] = "<br>THE WHITE TEAM WON!<br>";
                         header("refresh:5;url=end_game.php");
                     }
                     if ($_SESSION['points_black'] === 12) {
-                        $message[] = "<br>КОМАНДА ЧОРНИХ ВИГРАЛА!<br>";
+                        $message[] = "<br>THE BLACK TEAM WON!<br>";
                         header("refresh:5;url=end_game.php");
                     }
                     if ($message !== null) {
@@ -74,7 +83,7 @@ require_once "game.php";
                             echo $mes;
                         }
                     } else {
-                        echo "зробіть свій перший хід";
+                        echo "команда білих робить перший хід";
                     }
 
                     ?></h5>
@@ -184,9 +193,7 @@ require_once "game.php";
                         <td class="white" id="h1"></td>
                     </tr>
                 </table>
-                <!-- <div class="row justify-content-center align-items-center"> -->
                 <a href="end_game.php" class="text-reset">finish the game</a>
-                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -196,13 +203,11 @@ require_once "game.php";
         const form2 = document.getElementById("form2");
         var white = JSON.parse('<?php echo $jsonwhite ?>');
         var black = JSON.parse('<?php echo $jsonblack ?>');
-        // document.getElementById("white").innerHTML = white;
-        // document.getElementById("black").innerHTML = black;
 
         document.addEventListener("click", function(event) {
             const target = event.target.classList.contains("white") ||
                 event.target.classList.contains("black") ||
-                event.target.classList.contains("red-piece") ||
+                event.target.classList.contains("white-piece") ||
                 event.target.classList.contains("black-piece");
 
             if (target) {
@@ -217,7 +222,7 @@ require_once "game.php";
         for (var i = 0; i < table.length; i++) {
             if (white.includes(table[i].id)) {
                 const piece = document.createElement('div');
-                piece.className = "red-piece";
+                piece.className = "white-piece";
                 table[i].appendChild(piece);
             }
         }

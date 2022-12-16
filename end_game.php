@@ -3,7 +3,7 @@ session_start();
 session_unset();
 session_destroy();
 ?>
-
+<!--page the end of the game -->
 <!DOCTYPE html>
 <html lang="en">
 

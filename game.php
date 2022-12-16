@@ -6,7 +6,7 @@ require_once 'object.php';
 
 
 //Move
-if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
+if (isset($_POST['choose_figure']) and isset($_POST['set_step'])) {
     $choose_figure = str_split($_POST['choose_figure']); //this will be entered from the form. which checkers do we make a move with
     $setStep = str_split($_POST['set_step']); //it will be entered from the form where we are going to go
     $choose_figure = [$choose_figure[0], intval($choose_figure[1])];
@@ -119,5 +119,7 @@ if (isset($_POST['choose_figure']) or isset($_POST['set_step'])) {
             "you can't go here. there is no such field on the board";
         }
     }
+}else{
+    $message[] = "make the move";
 }
 

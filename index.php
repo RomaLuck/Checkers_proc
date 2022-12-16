@@ -38,7 +38,7 @@ $_SESSION['points_black'] = $points_black = 0;
                             <input type="text" class="form-control" id="black" name="black" placeholder="Black player name">
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary" id="save">Зберегти</button>
+                            <button type="submit" class="btn btn-primary" id="save">Save</button>
                         </div>
 
                         <div class="row gy-2">

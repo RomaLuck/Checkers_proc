@@ -1,6 +1,5 @@
 <?php
 
-//створюємо шахматну доску
 $goriz_desk = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 $vertic_desk = [1, 2, 3, 4, 5, 6, 7, 8];
 
@@ -15,6 +14,3 @@ for ($i = 1; $i <= 8; $i++) {
     $checkerdesk[]  = [0 => "g", 1 => $i];
     $checkerdesk[]  = [0 => "h", 1 => $i];
 }
-// print_r($checkerdesk);
-
-?>

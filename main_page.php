@@ -45,14 +45,6 @@ require_once "game.php";
                 return $parsarr;
             }
 
-            $wharray = [];
-            foreach ($_SESSION["wh_team"] as $item) {
-                $wharray[] = implode($item);
-            }
-            $blarray = [];
-            foreach ($_SESSION["bl_team"] as $item) {
-                $blarray[] = implode($item);
-            }
             $jsonwhite = json_encode(parseArray($_SESSION["wh_team"]));
             $jsonblack = json_encode(parseArray($_SESSION["bl_team"]));
             ?>
@@ -83,7 +75,7 @@ require_once "game.php";
                             echo $mes;
                         }
                     } else {
-                        echo "команда білих робить перший хід";
+                        echo "the white team makes the first move";
                     }
 
                     ?></h5>
@@ -92,7 +84,6 @@ require_once "game.php";
 
             <div class="row gy-3">
                 <table class="chess-board">
-
                     <tr>
                         <th></th>
                         <th>a</th>
@@ -237,7 +228,6 @@ require_once "game.php";
     </script>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
 </body>
 
 </html>

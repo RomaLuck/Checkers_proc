@@ -36,6 +36,7 @@ require_once "game.php";
             </form>
 
             <?php
+            /**transfer of an array with checkers to json format */
             function parseArray($array)
             {
                 $parsarr = [];
@@ -47,9 +48,11 @@ require_once "game.php";
 
             $jsonwhite = json_encode(parseArray($_SESSION["wh_team"]));
             $jsonblack = json_encode(parseArray($_SESSION["bl_team"]));
+            /**transfer of an array with checkers to json format */
             ?>
             <div class="row gx-3">
                 <div class="col">
+                    <!-- calculation of the number of points and the winner -->
                     <p><?php if (isset($_SESSION["white"])) {
                             echo ("White : " . $_SESSION["white"] . ' : ' . $_SESSION['points_white'] . ' points');
                         } ?></p>
@@ -79,6 +82,7 @@ require_once "game.php";
                     }
 
                     ?></h5>
+                <!-- calculation of the number of points and the winner -->
             </div>
 
 
@@ -189,6 +193,7 @@ require_once "game.php";
         </div>
     </div>
     <script>
+        /**receiving a json array and displaying the movement of checkers on the field */
         const table = document.getElementsByTagName("td");
         const form1 = document.getElementById("form1");
         const form2 = document.getElementById("form2");

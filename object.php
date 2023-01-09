@@ -1,4 +1,6 @@
 <?php
+
+/**Placement of checkers */
 $white = [
     ['a', 1],
     ['a', 3],

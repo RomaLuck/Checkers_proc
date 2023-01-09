@@ -5,7 +5,7 @@ require_once 'object.php';
 
 
 
-//Move
+/***Move */
 if (isset($_POST['choose_figure']) and isset($_POST['set_step'])) {
     $choose_figure = str_split($_POST['choose_figure']); //this will be entered from the form. which checkers do we make a move with
     $setStep = str_split($_POST['set_step']); //it will be entered from the form where we are going to go
@@ -13,7 +13,7 @@ if (isset($_POST['choose_figure']) and isset($_POST['set_step'])) {
     $setStep = [$setStep[0], intval($setStep[1])];
     $message = [];
 
-    //where you can go:
+    /****Where you can go */
     $side1 = $goriz_desk[array_search($choose_figure[0], $goriz_desk) + 1];
     $side2 = $goriz_desk[array_search($choose_figure[0], $goriz_desk) - 1];
     $forward = $vertic_desk[array_search($choose_figure[1], $vertic_desk) + 1];
@@ -29,8 +29,9 @@ if (isset($_POST['choose_figure']) and isset($_POST['set_step'])) {
     
 
 
-    //check:
-    if (in_array($choose_figure, $_SESSION["wh_team"])) { //move White
+    /****Check */
+    /****Move white */
+    if (in_array($choose_figure, $_SESSION["wh_team"])) { 
         if (in_array($setStep, $checkerdesk)) {
             if (in_array($setStep, $_SESSION["wh_team"])) {
                 $message[]= "the field is occupied by your checker";
@@ -74,7 +75,9 @@ if (isset($_POST['choose_figure']) and isset($_POST['set_step'])) {
         } else {
             "you can't go here. there is no such field on the board";
         }
-    } elseif (in_array($choose_figure, $_SESSION["bl_team"])) { //move Black
+
+        /****Move black */
+    } elseif (in_array($choose_figure, $_SESSION["bl_team"])) {
         if (in_array($setStep, $checkerdesk)) {
             if (in_array($setStep, $_SESSION["bl_team"])) {
                 $message[] = "the field is occupied by your checker";

@@ -46,7 +46,7 @@ $_SESSION['points_black'] = $points_black = 0;
                                 <?php
                                 if (isset($_POST["white"]) or isset($_POST["black"])) {
                                     echo "<p class='fw-lighter'>Data saved.</p>";
-                                header("refresh:0;url=main_page.php");
+                                header("Location: main_page.php");
                                 }
                                 ?>
                             </div>
